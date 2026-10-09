@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoPly — Официальный сайт</title>
+    <!-- Красивый русский шрифт Montserrat -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        /* Стиль в духе DXDCS.GG */
+        body {
+            background-color: #060608; 
+            color: #ffffff;
+            font-family: 'Montserrat', Arial, sans-serif; 
+            margin: 0;
+            padding: 0 0 60px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Плашка разработчика */
+        .developer-badge {
+            background-color: rgba(15, 15, 18, 0.95);
+            border-bottom: 2px solid #ff0033;
+            border-left: 2px solid #ff0033;
+            border-right: 2px solid #ff0033;
+            padding: 8px 25px;
+            font-size: 0.85rem;
+            color: #bbbbbb;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+            z-index: 10;
+        }
+
+        .developer-badge span {
+            color: #ff0033;
+            text-shadow: 0 0 8px rgba(255, 0, 51, 0.6);
+        }
+
+        /* Шапка сайта */
+        .welcome-header {
+            text-align: center;
+            padding: 30px 20px 15px 20px;
+            width: 100%;
+        }
+
+        .welcome-header h1 {
+            color: #ff0033;
+            font-size: 3.5rem;
+            margin: 0;
+            font-weight: 900; 
+            text-shadow: 0 0 20px rgba(255, 0, 51, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .welcome-header p {
+            font-size: 1.3rem;
+            color: #dddddd;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        .owner-highlight {
+            color: #ff3355;
+            font-weight: bold;
+            border-bottom: 2px dashed #ff0033;
+        }
+
+        /* Сетка из трех колонок */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 310px 1fr 290px;
+            gap: 25px;
+            max-width: 1400px;
+            width: 95%;
+            margin: 20px auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Дизайн карточек */
+        .box {
+            background-color: rgba(14, 14, 17, 0.88);
+            border: 2px solid #ff0033;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.25);
+            backdrop-filter: blur(8px);
+        }
+
+        .box h2 {
+            color: #ff0033;
+            font-size: 1.3rem;
+            margin-top: 0;
+            border-bottom: 2px solid #ff0033;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* ---- ЛЕВАЯ КАРТОЧКА: СКРЫТЫЙ СПОНСОР ---- */
+        .sponsor-box {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .sponsor-box:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .click-prompt {
+            color: #ff3355;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 15px;
+            font-style: italic;
+            letter-spacing: 0.5px;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Скрытый контент спонсора */
+        .hidden-sponsor-content {
+            display: none; /* Скрыто до клика */
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ff0033;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .best-name {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-shadow: 0 0 15px #ff0033;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .sponsor-desc {
+            color: #cccccc;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* ---- ЦЕНТРАЛЬНЫЙ БЛОК: МАЛЕНЬКАЯ КРАСНАЯ НАДПИСЬ ---- */
+        .center-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px;
+        }
+
+        .anime-donation-text {
+            color: #ff0033;
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 8px rgba(255, 0, 51, 0.6), 0 0 20px rgba(255, 0, 51, 0.4);
+            border: 1px dashed rgba(255, 0, 51, 0.4);
+            padding: 12px 30px;
+            border-radius: 8px;
+            background-color: rgba(22, 11, 14, 0.6);
+            transition: all 0.3s;
+        }
+
+        .anime-donation-text:hover {
+            color: #ffffff;
+            background-color: #ff0033;
+            box-shadow: 0 0 25px #ff0033;
+            text-shadow: none;
+        }
+
+        /* Правый блок (Планы) */
+        .news-item {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .news-date {
+            color: #ff3355;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        /* Нижний блок автора */
+        .footer-container {
+            max-width: 800px;
+            width: 95%;
+            margin: 40px auto 10px auto;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .signature {
+            display: block;
+            color: #ff0033;
+            font-size: 1.4rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+        }
+
+        .footer-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #77777c;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            border-bottom: 1px solid #333336;
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #ff0033;
+            border-color: #ff0033;
+            text-shadow: 0 0 8px rgba(255, 0, 51, 0.6);
+        }
+
+        /* Анимации */
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Мобильная адаптивность */
+        @media (max-width: 1050px) {
+            .main-layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Разработчик -->
+    <div class="developer-badge">
+        Разработчик by: <span>52McLarren</span>
+    </div>
+
+    <!-- Заголовок YoPly -->
+    <div class="welcome-header">
+        <h1>YoPly</h1>
+        <p>Вас приветствует <span class="owner-highlight">владелец сайта YoPly</span>!</p>
+    </div>
+
+    <!-- Основной контент (Три колонки) -->
+    <div class="main-layout">
+        
+        <!-- ЛЕВАЯ КОЛОНКА (СКРЫТЫЙ СПОНСОР НА КЛИК) -->
+        <div class="box sponsor-box" onclick="toggleSponsor()">
+            <h2>Почетный Спонсор Сайта</h2>
+            <div id="clickPrompt" class="click-prompt">✦ Нажмите, чтобы открыть спонсора ✦</div>
+            
+            <div id="sponsorContent" class="hidden-sponsor-content">
+                <div class="best-name">Дима З</div>
+                <p class="sponsor-desc">Главный меценат, легендарный спонсор и лучший друг проекта YoPly!</p>
+            </div>
+        </div>
+
+        <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА (МАЛЕНЬКАЯ КРАСНАЯ НАДПИСЬ) -->
+        <div class="box center-box">
+            <div class="anime-donation-text">🔥 Донат и поддержка</div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <div class="box">
+            <h2>Что планируется</h2>
+            <div class="news-item">
+                <span class="news-date">Планы №1:</span>
+                <p style="margin: 5px 0 0 0; color: #ccc;">Полное обновление интерфейса и игровых модулей.</p>
+            </div>
+            <div class="news-item">
+                <span class="news-date">Планы №2:</span>
+                <p style="margin: 5px 0 0 0; color: #ccc;">Интеграция со статистикой игровых серверов YoPly.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ПОДВАЛ С ПОДПИСЬЮ -->
+    <div class="footer-container">
+        <span class="signature">Сикс севен</span>
+        <a href="https://github.com" target="_blank" class="footer-link">Профиль создателя 52McLarren ➔</a>
+    </div>
+
+    <!-- Логика для раскрытия спонсора по клику -->
+    <script>
+        function toggleSponsor() {
+            var content = document.getElementById('sponsorContent');
+            var prompt = document.getElementById('clickPrompt');
+            
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                prompt.style.display = 'block';
+            } else {
+                content.style.display = 'block';
+                prompt.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
